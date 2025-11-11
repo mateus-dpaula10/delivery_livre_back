@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DriverOrderController;
+use App\Http\Controllers\DashboardAdminGeral;
 use Illuminate\Support\Facades\Http;
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
@@ -58,4 +59,6 @@ Route::middleware('auth:sanctum')->group(function () {
         }
         return $response->json();
     });
+
+    Route::post('/banners', [DashboardAdminGeralController::class, 'storeBanners'])->name('banners.admin.store');
 });
