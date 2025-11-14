@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DriverOrderController;
-use App\Http\Controllers\DashboardAdminGeral;
+use App\Http\Controllers\DashboardAdminGeralController;
 use Illuminate\Support\Facades\Http;
 
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
@@ -60,5 +60,9 @@ Route::middleware('auth:sanctum')->group(function () {
         return $response->json();
     });
 
-    Route::post('/banners', [DashboardAdminGeralController::class, 'storeBanners'])->name('banners.admin.store');
+    Route::get('/banners', [DashboardAdminGeralController::class, 'index'])->name('banners.admin.index');
+    Route::get('/banners-company', [DashboardAdminGeralController::class, 'bannersCompany'])->name('banners.store.bannersCompany');
+    Route::post('/banners', [DashboardAdminGeralController::class, 'store'])->name('banners.admin.store');
+    Route::put('/banners/{id}/update', [DashboardAdminGeralController::class, 'update'])->name('banners.admin.update');
+    Route::delete('/banners/{id}/delete', [DashboardAdminGeralController::class, 'destroy'])->name('banners.admin.destroy');
 });
